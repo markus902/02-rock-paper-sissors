@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Rock, PAPER , Scissors - Can you beat the computer?</title>
+
+<style>
+
+h1{
+    text-align: center;
+}
+
+p{
+    text-align: center;
+    font-weight: bold;
+}
+
+
+
+</style>
+
+</head>
+
+<body>
+
+    <h1>Rock, Paper, Scissors</h1>
+    <br><br><br>
+    <p id="winner"></p>
+    <p>You will play 5 rounds!</p><br><br><br>
+    <p>Socore Computer:</p><p id="computer"></p>
+    <p>Socore Player:</p><p id="player"></p>
+    
+    
+    
+    <button onclick="start()">Start</button>
+    <button onclick="reset()">Start over</button>
+
+    
+</body>
+<script>
+
+let computerSelection;
+let playerSelection;
+let playerChoice;
+let a = 1;
+let computerScore = 0;
+let playerScore = 0;
+
+let computerResult = 0;
+let playerResult = 0;
+let i = 0;
+let game;
+
+
+function reset(){
+     computerResult = 0;
+     playerResult = 0;
+     start();
+    
+}
+
+
+function start(){
+
+for(i = 1; i < 6; i++){
+
+console.log("Round " + i);
+
+
+playerSelection = prompt("Your choice? Rock, Paper, Scissors?");
+playerSelection = playerSelection.toUpperCase(playerSelection);
+
+console.log(playerChoice);
+
+computerSelection = Math.floor(Math.random() * 3) + 1;
+
+console.log(checkplayerChoice());
+console.log(convertComputer());
+console.log(convertPlayer());
+console.log(playRound());
+
+computerResult = computerResult + computerScore;
+playerResult = playerResult + playerScore;
+
+console.log("Result: " + computerResult + ":" + playerResult);
+
+document.getElementById("computer").innerHTML = computerResult;
+document.getElementById("player").innerHTML = playerResult;
+}
+}
+
+
+
+
+
+function checkplayerChoice(playerChoice) {
+
+if (isNaN(playerSelection)) {
+    alert("Your entered a correct value!");
+} else {
+    alert("Your entry is not valid!");
+    reset();}
+
+}
+
+
+function convertPlayer(){
+    if (playerSelection == "ROCK") {
+        playerSelection = 1;
+        console.log("Player chose ROCK");
+    }
+    else if (playerSelection == "PAPER"){
+        playerSelection = 2;
+        console.log("Player chose PAPER");
+    }
+     else {
+        playerSelection = 3;
+        console.log("Player chose SCISSORS");
+    }
+}        
+
+function convertComputer(){
+    if (computerSelection == 1) {
+        console.log("Computer chose ROCK");
+    }
+    else if (computerSelection == 2){
+        console.log("Computer chose PAPER");
+    }
+     else {
+        console.log("Computer chose SCISSORS");
+    }
+}        
+    
+
+function playRound(){
+
+    game = computerSelection.toString() + playerSelection.toString();
+    console.log(game)
+    
+    switch(game) {
+        
+            case '11':
+            computerScore = 1;
+            playerScore = 1;
+            console.log("Both win!");
+            alert("Both win!");
+            break;
+            case '22':
+            computerScore = 1;
+            playerScore = 1;
+            console.log("Both win!");
+            alert("Both win!");
+            break;
+            case '33':
+            computerScore = 1;
+            playerScore = 1;
+            console.log("Both win!");
+            alert("Both win!");
+            break;
+            case '12':
+            computerScore = 0;
+            playerScore = 1;
+            console.log("Player wins!");
+            alert("Player wins!");
+            break;
+            case '21':
+            computerScore = 1;
+            playerScore = 0;
+            console.log("Computer wins!");
+            alert("Computer wins!");
+            break;
+            case '13':
+            computerScore = 1;
+            playerScore = 0;
+            console.log("Computer wins!");
+            alert("Computer wins!");
+            break;
+            case '31':
+            computerScore = 0;
+            playerScore = 1;
+            console.log("Player wins!");
+            alert("Player wins!");
+            break;
+            case '23':
+            computerScore = 0;
+            playerScore = 1;
+            console.log("Player wins!");
+            alert("Player wins!");
+            break;
+            case '32':
+            computerScore = 1;
+            playerScore = 0;
+            console.log("Computer wins!");
+            alert("Computer wins!");
+            break;
+
+
+    }
+
+}
+</script>

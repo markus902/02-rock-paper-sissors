@@ -14,6 +14,24 @@ p{
     font-weight: bold;
 }
 
+#rock{
+    background: gray;
+}
+
+#paper{
+    background: whitesmoke;
+}
+
+#scissors{
+    background: pink;
+}
+
+.buttons{
+    text-align: -webkit-center;
+    border: 2px solid black;
+    border-radius: 50px;
+}
+
 
 
 </style>
@@ -30,10 +48,13 @@ p{
     <p>Socore Player:</p><p id="player"></p>
     
     
-    
-    <button onclick="start()">Start</button>
-    <button onclick="reset()">Start over</button>
-
+    <div class='buttons'>
+    <button id='rock' onclick="rock()">rock</button>
+    <button id='paper' onclick="paper()">paper</button>
+    <button id='scissors' onclick="scissors()">scissors</button>
+    <br><br>
+    <button id='resetbutton' onclick="reset()">Reset</button>
+    </div>
     
 </body>
 <script>
@@ -41,94 +62,70 @@ p{
 let computerSelection;
 let playerSelection;
 let playerChoice;
-let a = 1;
 let computerScore = 0;
 let playerScore = 0;
 let computerResult = 0;
 let playerResult = 0;
 let i = 0;
 let game;
+let desc;
 
 
 function reset(){
      computerResult = 0;
      playerResult = 0;
-     start();
     
+}
+
+function rock(){
+    playerSelection = 1;
+    start();
+}
+function paper(){
+    playerSelection = 2;
+    start();
+}
+function scissors(){
+    playerSelection = 3;
+    start();
 }
 
 
 function start(){               //starts game and loops until round 5
 
-for(i = 1; i < 2; i++){
-
-//console.log("Round " + i);
-
-playerSelection = prompt("Your choice? Rock, Paper, Scissors?");
-playerSelection = playerSelection.toUpperCase(playerSelection);
-
-//console.log(playerChoice);
+for(i = 1; i < 5; i++){
 
 computerSelection = Math.floor(Math.random() * 3) + 1;
 
-checkplayerChoice();
-convertComputer();
-convertPlayer();
 playRound();
-
 
 computerResult = computerResult + computerScore;
 playerResult = playerResult + playerScore;
 
 console.log("Result: " + computerResult + ":" + playerResult);
 
-document.getElementById("computer").innerHTML = computerResult;
-document.getElementById("player").innerHTML = playerResult;
+const resultbox = document.querySelector('.buttons');
+const results = document.createElement('div');
+results.classList.add('results');
+
+results.textContent = "Result: " + computerResult + " : " + playerResult + "   " + desc;
+resultbox.appendChild(results);
+
 }
-}
 
-
-
-
-
-function checkplayerChoice(playerChoice) {          //checks if players entry is valid
-
-if (isNaN(playerSelection)) {
-    alert("Your entered a correct value!");
+if (computerScore > playerScore) {
+    endresult = "Computer wins!"
 } else {
-    alert("Your entry is not valid!");
-    reset();}
+    endresult = "Player wins!";
+}
+
+const winner = document.createElement('p');
+winner.textContent = endresult;
 
 }
 
 
-function convertPlayer(){                       //converts players entry into number 1, 2, or 3
-    if (playerSelection == "ROCK") {
-        playerSelection = 1;
-        console.log("Player chose ROCK");
-    }
-    else if (playerSelection == "PAPER"){
-        playerSelection = 2;
-        console.log("Player chose PAPER");
-    }
-     else {
-        playerSelection = 3;
-        console.log("Player chose SCISSORS");
-    }
-}        
 
-function convertComputer(){                         //converts computers choice into text
-    if (computerSelection == 1) {
-        console.log("Computer chose ROCK");
-    }
-    else if (computerSelection == 2){
-        console.log("Computer chose PAPER");
-    }
-     else {
-        console.log("Computer chose SCISSORS");
-    }
-}        
-    
 
 function playRound(){                           //compares computers vs. players choice and returns result
 
@@ -141,55 +138,55 @@ function playRound(){                           //compares computers vs. players
             computerScore = 1;
             playerScore = 1;
             console.log("Both win!");
-            alert("Both win!");
+            desc = "Both win!";
             break;
             case '22':
             computerScore = 1;
             playerScore = 1;
             console.log("Both win!");
-            alert("Both win!");
+            desc = "Both win!";
             break;
             case '33':
             computerScore = 1;
             playerScore = 1;
             console.log("Both win!");
-            alert("Both win!");
+            desc = "Both win!";
             break;
             case '12':
             computerScore = 0;
             playerScore = 1;
             console.log("Player wins!");
-            alert("Player wins!");
+            desc = "Player wins!";
             break;
             case '21':
             computerScore = 1;
             playerScore = 0;
             console.log("Computer wins!");
-            alert("Computer wins!");
+            desc = "Computer wins!";
             break;
             case '13':
             computerScore = 1;
             playerScore = 0;
             console.log("Computer wins!");
-            alert("Computer wins!");
+            desc = "Computer wins!";
             break;
             case '31':
             computerScore = 0;
             playerScore = 1;
             console.log("Player wins!");
-            alert("Player wins!");
+            desc = "Player wins!";
             break;
             case '23':
             computerScore = 0;
             playerScore = 1;
             console.log("Player wins!");
-            alert("Player wins!");
+            desc = "Player wins!";
             break;
             case '32':
             computerScore = 1;
             playerScore = 0;
             console.log("Computer wins!");
-            alert("Computer wins!");
+            desc = "Computer wins!";
             break;
 
 
